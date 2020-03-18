@@ -34,6 +34,7 @@ $(".feedbackCorrect").hide();
 $(".feedbackWrong").hide();
 //create a  listener to start quiz/timer on button click
 $(".submit").on("click", function () {
+    //NEED to add validation to make sure userName isn't entered empty
     userName = initials.value
     highScoreDisplay.push(userName + "-" + seconds);
     localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
