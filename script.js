@@ -16,11 +16,15 @@ var correctAnswer = ["3", "3", "4", "3", "4"];
 var i = 0;
 var seconds = 75;
 var interval = "";
-var highScoreDisplay = JSON.parse(localStorage.getItem("highScore"));
+var highScoreDisplay = [];
 var userName = "";
 
 var buttonInput = "";
 var answer = "";
+
+if(JSON.parse(localStorage.getItem("highScore")) !== null){
+    highScoreDisplay = JSON.parse(localStorage.getItem("highScore"));
+}
 
 
 //hide quiz buttons
@@ -29,25 +33,25 @@ $(".finishForm").hide();
 $(".feedbackCorrect").hide();
 $(".feedbackWrong").hide();
 //create a  listener to start quiz/timer on button click
-$(".submit").on("click", function() {
+$(".submit").on("click", function () {
     userName = initials.value
     highScoreDisplay.push(userName + "-" + seconds);
     localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
     window.location.href = "https://nathannaylor.github.io/Code-Quiz/highscores.html";
-    
+
 });
 
 //my attempt to detect enter key input inside of input box
-$(".submit").keypress(function(e) {
+$(".submit").keypress(function (e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
-    if(keycode == '13') {
+    if (keycode == '13') {
         userName = initials.value
         highScoreDisplay.push(userName + "-" + seconds);
         localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
         window.location.href = "https://nathannaylor.github.io/Code-Quiz/highscores.html";
-        
+
     }
-    
+
 });
 $(".startButton").on("click", function () {
     $(".startPage").hide();
@@ -55,7 +59,7 @@ $(".startButton").on("click", function () {
     quizQuestions();
     //listeners on answer button class
     //if statement to strictly compare value on button click
-    
+
     console.log("yes")
     //call timer function
     interval = setInterval(function () {
@@ -65,7 +69,7 @@ $(".startButton").on("click", function () {
         }
         else {
             finished();
-            
+
         }
     }, 1000);
 });
@@ -98,9 +102,9 @@ function quizQuestions() {
     $(".answer2").text(answer2Array[i])
     $(".answer3").text(answer3Array[i])
     $(".answer4").text(answer4Array[i])
-    if(i >= questionArray.length) {
+    if (i >= questionArray.length) {
         finished();
-        
+
     }
 };
 
@@ -108,7 +112,7 @@ function renderTime() {
     secondsDisplay.textContent = seconds
 };
 
-function finished () {
+function finished() {
     clearInterval(interval);
     $(".quizPage").hide();
     $(".finishForm").show();
@@ -120,19 +124,21 @@ function finished () {
 
 //calls high scores from local storage in order to display 
 console.log(highScoreDisplay)
-for(var a = 0; a < highScoreDisplay.length; a++) {
-    $(highScore).append($("<li></li>").text(highScoreDisplay[a]));
-    console.log(highScoreDisplay[a])
+if (highScoreDisplay !== null) {
+    for (var a = 0; a < highScoreDisplay.length; a++) {
+        $(highScore).append($("<li></li>").text(highScoreDisplay[a]));
+        console.log(highScoreDisplay[a])
+    };
 };
 
 //clears displayed highscores from storage and from screen
-$(".clear").on("click", function(){
+$(".clear").on("click", function () {
     highScoreDisplay = [];
     localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
     location.reload(true);
 });
 
 //send user back to quiz page on click of go back button
-$(".goBack").on("click", function(){
-    window.location.href="https://nathannaylor.github.io/Code-Quiz/";
+$(".goBack").on("click", function () {
+    window.location.href = "https://nathannaylor.github.io/Code-Quiz/";
 });
