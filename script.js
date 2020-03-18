@@ -16,15 +16,12 @@ var correctAnswer = ["3", "3", "4", "3", "4"];
 var i = 0;
 var seconds = 75;
 var interval = "";
-var highScoreDisplay = userName + seconds;
+var highScoreDisplay = JSON.parse(localStorage.getItem("highScore"));
 var userName = "";
 
 var buttonInput = "";
 var answer = "";
 
-localStorage.setItem("highScoreList", highScore.value )
-
-$(highScore).append(localStorage.getItem("highScore"));
 
 //hide quiz buttons
 $(".quizPage").hide();
@@ -34,11 +31,23 @@ $(".feedbackWrong").hide();
 //create a  listener to start quiz/timer on button click
 $(".submit").on("click", function() {
     userName = initials.value
-    highScoreDisplay = userName + "-" + seconds;
-    $("#scoreList").append(highScoreDisplay);
-    localStorage.setItem("highScore", highScoreDisplay);
+    highScoreDisplay.push(userName + "-" + seconds);
+    localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
     window.location.href = "highscores.html";
+    
+});
 
+//my attempt to detect enter key input inside of input box
+$(".submit").keypress(function(e) {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if(keycode == '13') {
+        userName = initials.value
+        highScoreDisplay.push(userName + "-" + seconds);
+        localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
+        window.location.href = "highscores.html";
+        
+    }
+    
 });
 $(".startButton").on("click", function () {
     $(".startPage").hide();
@@ -46,7 +55,7 @@ $(".startButton").on("click", function () {
     quizQuestions();
     //listeners on answer button class
     //if statement to strictly compare value on button click
-
+    
     console.log("yes")
     //call timer function
     interval = setInterval(function () {
@@ -101,12 +110,29 @@ function renderTime() {
 
 function finished () {
     clearInterval(interval);
-        $(".quizPage").hide();
-        $(".finishForm").show();
-        allDoneDisplay.textContent = seconds
+    $(".quizPage").hide();
+    $(".finishForm").show();
+    allDoneDisplay.textContent = seconds
 }
 
 
-        //create timer function w/one second decrementing interval starting at 75
+//create timer function w/one second decrementing interval starting at 75
 
-        //
+//calls high scores from local storage in order to display 
+console.log(highScoreDisplay)
+for(var a = 0; a < highScoreDisplay.length; a++) {
+    $(highScore).append($("<li></li>").text(highScoreDisplay[a]));
+    console.log(highScoreDisplay[a])
+};
+
+//clears displayed highscores from storage and from screen
+$(".clear").on("click", function(){
+    highScoreDisplay = [];
+    localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
+    location.reload(true);
+});
+
+//send user back to quiz page on click of go back button
+$(".goBack").on("click", function(){
+    window.location.href = "index.html";
+});
