@@ -1,6 +1,7 @@
 var secondsDisplay = document.getElementById("seconds");
 var allDoneDisplay = document.getElementById("score");
 var initials = document.getElementById("initials");
+var highScore = document.getElementById("scoreList");
 var questionArray = ["Commonly used data types DO NOT include:",
     "The condition in an if/else statement is enclosed within ______.",
     "Arrays in JavaScript can be used to store ______.",
@@ -15,11 +16,15 @@ var correctAnswer = ["3", "3", "4", "3", "4"];
 var i = 0;
 var seconds = 75;
 var interval = "";
+var highScoreDisplay = userName + seconds;
 var userName = "";
-var highScoreDisplay = "";
 
 var buttonInput = "";
 var answer = "";
+
+localStorage.setItem("highScoreList", highScore.value )
+
+$(highScore).append(localStorage.getItem("highScore"));
 
 //hide quiz buttons
 $(".quizPage").hide();
@@ -29,7 +34,11 @@ $(".feedbackWrong").hide();
 //create a  listener to start quiz/timer on button click
 $(".submit").on("click", function() {
     userName = initials.value
+    highScoreDisplay = userName + "-" + seconds;
+    $("#scoreList").append(highScoreDisplay);
+    localStorage.setItem("highScore", highScoreDisplay);
     window.location.href = "highscores.html";
+
 });
 $(".startButton").on("click", function () {
     $(".startPage").hide();
