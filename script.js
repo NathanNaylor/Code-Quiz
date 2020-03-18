@@ -33,7 +33,7 @@ $(".submit").on("click", function() {
     userName = initials.value
     highScoreDisplay.push(userName + "-" + seconds);
     localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
-    window.location.href="highscores.html";
+    window.location.href = "https://nathannaylor.github.io/Code-Quiz/highscores.html";
     
 });
 
@@ -44,7 +44,7 @@ $(".submit").keypress(function(e) {
         userName = initials.value
         highScoreDisplay.push(userName + "-" + seconds);
         localStorage.setItem("highScore", JSON.stringify(highScoreDisplay));
-        window.location.href="highscores.html";
+        window.location.href = "https://nathannaylor.github.io/Code-Quiz/highscores.html";
         
     }
     
@@ -134,5 +134,5 @@ $(".clear").on("click", function(){
 
 //send user back to quiz page on click of go back button
 $(".goBack").on("click", function(){
-    window.location.href="index.html";
+    window.location.href="https://nathannaylor.github.io/Code-Quiz/";
 });
