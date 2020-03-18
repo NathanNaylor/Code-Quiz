@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+        create a button in order to start quiz
+
+        create text for displaying timer, and time remaining
+
+        create a button for viewing high scores
+        
+        create empty h1 tag to display the questions in
+
+        create 4 empty buttons to display answers in
+
+        create an h3 to display Correct! or Wrong! based on user responses
+
+    -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-dark scoreButton" style="float: left;">View High Scores</button>
+
+            </div>
+            <div class="col-md-auto">
+                <div class="startPage">
+                    <h1 class="text-center">Coding Quiz Challenge</h1>
+                    <br>
+                    <p class="text-center">Try to answer the following code-related questions within the time limit.
+                        keep in
+                        mind that incorrect
+                        answers will penalize your score/time by ten seconds!</p>
+                    <br>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-dark startButton">Start Quiz</button>
+                    </div>
+                </div>
+                <div class="quizPage">
+                    <h1 class="question"></h1>
+                    <button type="button" class="btn btn-dark answerButton answer1" value="1"></button>
+                    <br>
+                    <button type="button" class="btn btn-dark answerButton answer2" value="2"></button>
+                    <br>
+                    <button type="button" class="btn btn-dark answerButton answer3" value="3"></button>
+                    <br>
+                    <button type="button" class="btn btn-dark answerButton answer4" value="4"></button>
+                    <div class="feedbackCorrect">
+                        <hr>
+                        <p>Correct!</p>
+                    </div>
+                    <div class="feedbackWrong">
+                        <p>Wrong!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <p class="secondsDisplay" style="float: right;">Timer: 0</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var questionArray = ["What is my Name?", "are we human?"];
+        var answer1Array = ["Bob", "Yes"];
+        var answer2Array = ["Frank", "No"];
+        var answer3Array = ["Nathan", "Human"];
+        var answer4Array = ["Charlie", "Dancer"];
+        var correctAnswer = ["3", "4"];
+        var i = 0;
+        var seconds = 75;
+
+        var buttonInput = ""
+        var answer = ""
+        //hide quiz buttons
+        $(".quizPage").hide();
+        $(".feedbackCorrect").hide();
+        $(".feedbackWrong").hide();
+        //create a  listener to start quiz/timer on button click
+        $(".startButton").on("click", function () {
+            $(".startPage").hide();
+            $(".quizPage").show();
+            quizQuestions();
+            //listeners on answer button class
+            //if statement to strictly compare value on button click
+
+            console.log("yes")
+            //call timer function
+            setInterval(function () {
+                if (seconds > 0) {
+                    seconds--;
+                }
+                else {
+
+                }
+            }, 1000);
+        });
+
+        $(".answerButton").on("click", function () {
+            $(".feedbackCorrect").hide();
+            $(".feedbackWrong").hide();
+            buttonInput = this.value;
+            console.log(buttonInput)
+            if (correctAnswer[i] === buttonInput) {
+                $(".feedbackCorrect").show();
+            } else {
+                $(".feedbackWrong").show();
+                seconds = seconds - 10;
+            }
+            i++
+            setTimeout(function () {
+                $(".feedbackCorrect").hide();
+                $(".feedbackWrong").hide();
+            }, 1000);
+            console.log(i)
+            quizQuestions();
+        });
+
+        function quizQuestions() {
+            //set .question h1 text to the questions
+            $(".question").text(questionArray[i])
+            $(".answer1").text(answer1Array[i])
+            $(".answer2").text(answer2Array[i])
+            $(".answer3").text(answer3Array[i])
+            $(".answer4").text(answer4Array[i])
+        };
+
+
+
+        //create timer function w/one second decrementing interval starting at 75
+
+        //
+    </script>
+</body>
+
+</html>
