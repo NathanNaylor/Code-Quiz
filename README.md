@@ -1,51 +1,56 @@
-# 04 Web APIs: Code Quiz
 
-As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+# Code Quiz
 
-## User Story
+
+![License: None](https://img.shields.io/badge/License-None-blue.svg)
+
+## Description
+This Web Application utilizes JavaScript to create a testing apparatus. The quiz enabled me to practice with setting up a timer and detecting answers, while also looking into some questions you may be asked about JavaScript in an interview.
+
+## Table of Contents
+
+* [Installation](#installation)
+
+* [Usage](#usage)
+
+* [License](#license)
+
+* [Contributing](#contributing)
+
+* [Tests](#tests)
+
+* [Questions](#questions)
+
+## Installation
+
+Install required dependencies using the following command:
 
 ```
-AS A coding bootcamp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+npm i
 ```
 
-## Acceptance Criteria
+## Usage
+
+In order to use the application please go to the hosted app on GitHub Pages at nathannaylor.github.io/Code-Quiz/ and click the start quiz button.
+
+## Licensing
+
+None
+
+## Contributing
+
+This project is no longer active, if you have any questions or require assistance please contact @NathanNaylor using the email provided below.
+
+## Testing
+
+To run tests, use the following command:
 
 ```
-GIVEN I am taking a code quiz
-
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-
-WHEN I answer a question
-THEN I am presented with another question
-
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-
-WHEN the game is over
-THEN I can save my initials and score
+npm test
 ```
 
-The following animation demonstrates the application functionality:
+## Questions
 
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
+<img src="https://avatars3.githubusercontent.com/u/61394430?v=4" alt="GitHub User Icon" style="border-radius: 30px" width="50">  
 
-### Review
-
-You are required to submit the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-### Demonstration Video
-
-[Panopto: Homework 4 Demo](https://codingbootcamp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=92f2e680-96d7-4fbd-8c1b-ab8000fe2e33)
-
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+If you have questions about the repo, open an issue or contact [NathanNaylor](https://github.com/NathanNaylor) directly at nathannaylors@gmail.com.
